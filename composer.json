@@ -9,10 +9,21 @@
             "email": "fermius.us@gmail.com"
         }
     ],
-    "require": {},
+    "require-dev": {
+        "ext-json": "*",
+        "phpunit/phpunit": "^9.4"
+    },
+    "scripts": {
+        "phpunit": "phpunit --stop-on-error --stop-on-failure --testdox"
+    },
     "autoload": {
         "psr-4": {
             "EasyHttp\\LayerContracts\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EasyHttp\\LayerContracts\\Tests\\": "tests/"
         }
     }
 }
