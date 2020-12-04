@@ -8,6 +8,13 @@ use EasyHttp\LayerContracts\Contracts\HttpClientRequest;
 
 class SomeClient extends AbstractClient
 {
+    private int $adapterCounter = 0;
+
+    public function getAdapterCounter(): int
+    {
+        return $this->adapterCounter;
+    }
+
     protected function buildRequest(string $method, string $uri): HttpClientRequest
     {
         $request = new ClientRequest();
@@ -16,8 +23,16 @@ class SomeClient extends AbstractClient
         return $request;
     }
 
-    protected function getAdapter(): HttpClientAdapter
+    protected function buildAdapter(): HttpClientAdapter
     {
-        return new ClientAdapter();
+        $this->adapterCounter++;
+
+        $client = new ClientAdapter();
+
+        if ($this->hasHandler()) {
+            $client->setHandler($this->handler);
+        }
+
+        return $client;
     }
 }
