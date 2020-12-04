@@ -22,7 +22,7 @@ class AbstractClientTest extends TestCase
     /**
      * @test
      */
-    public function itExecuteAPreparedRequest()
+    public function itExecutesAPreparedRequest()
     {
         $client = new SomeClient();
         $client->prepareRequest('GET', 'http://example.com/api');
