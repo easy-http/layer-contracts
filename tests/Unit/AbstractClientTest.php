@@ -10,6 +10,20 @@ class AbstractClientTest extends TestCase
     /**
      * @test
      */
+    public function itExecutesARequest()
+    {
+        $client = new SomeClient();
+
+        $response = $client->call('GET', 'http://example.com/api');
+
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame(['key' => 'value'], $response->toJson());
+        $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $response->getHeaders());
+    }
+
+    /**
+     * @test
+     */
     public function itPreparesARequestForExecution()
     {
         $client = new SomeClient();
