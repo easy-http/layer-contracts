@@ -35,6 +35,7 @@ abstract class AbstractClient implements EasyClientContract
 
     public function withHandler(callable $handler): self
     {
+        $this->flushAdapter();
         $this->handler = $handler;
 
         return $this;
@@ -45,6 +46,32 @@ abstract class AbstractClient implements EasyClientContract
         return $this->getAdapter()->request($this->request);
     }
 
+    protected function getAdapter(): HttpClientAdapter
+    {
+        if ($this->hasAdapter()) {
+            return $this->adapter;
+        }
+
+        $this->adapter = $this->buildAdapter();
+
+        return $this->adapter;
+    }
+
+    protected function hasAdapter(): bool
+    {
+        return (bool) ($this->adapter ?? null);
+    }
+
+    protected function hasHandler(): bool
+    {
+        return (bool) ($this->handler ?? null);
+    }
+
+    protected function flushAdapter(): void
+    {
+        unset($this->adapter);
+    }
+
     abstract protected function buildRequest(string $method, string $uri): HttpClientRequest;
-    abstract protected function getAdapter(): HttpClientAdapter;
+    abstract protected function buildAdapter(): HttpClientAdapter;
 }
