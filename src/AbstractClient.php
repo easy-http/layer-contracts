@@ -20,16 +20,6 @@ abstract class AbstractClient implements EasyClientContract
         return $this->request;
     }
 
-    protected function setRequest(HttpClientRequest $request): void
-    {
-        $this->request = $request;
-    }
-
-    protected function setAdapter(HttpClientAdapter $adapter): void
-    {
-        $this->adapter = $adapter;
-    }
-
     public function call(string $method, string $uri): HttpClientResponse
     {
         $request = $this->buildRequest($method, $uri);
@@ -38,7 +28,7 @@ abstract class AbstractClient implements EasyClientContract
 
     public function prepareRequest(string $method, string $uri): self
     {
-        $this->setRequest($this->buildRequest($method, $uri));
+        $this->request = $this->buildRequest($method, $uri);
 
         return $this;
     }
