@@ -11,61 +11,6 @@
 
 # Layer Contracts
 
-Http layer contracts for PHP clients. For all client layers see [Easy Http](https://github.com/easy-http).
-
-# Usage
-
-## Simple requests
-
-You can execute a simple request through the Standard class. 
-
-```php
-use EasyHttp\GuzzleLayer\SomeClient;
-
-$client = new SomeClient();
-$response = $client->call('GET', 'https://api.ratesapi.io/api/2020-07-24/?base=USD');
-
-$response->getStatusCode(); // 200
-$response->toJson();      // JSON
-```
-
-## Prepared requests
-
-A prepared request is a more flexible way to generate requests through any client.
-
-```php
-use EasyHttp\GuzzleLayer\SomeClient;
-
-$client = new SomeClient();
-
-$client->prepareRequest('POST', 'https://jsonplaceholder.typicode.com/posts');
-$client->getRequest()->setJson([
-    'title' => 'foo',
-    'body' => 'bar',
-    'userId' => 1,
-]);
-$response = $client->execute();
-
-$response->getStatusCode(); // 201
-$response->toJson();      // JSON
-```
-
-## HTTP Authentication
-
-Actually this library supports basic authentication natively.
-
-```php
-use EasyHttp\GuzzleLayer\SomeClient;
-
-$client = new SomeClient();
-
-$client->prepareRequest('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token');
-$user = 'AeA1QIZXiflr1_-r0U2UbWTziOWX1GRQer5jkUq4ZfWT5qwb6qQRPq7jDtv57TL4POEEezGLdutcxnkJ';
-$pass = 'ECYYrrSHdKfk_Q0EdvzdGkzj58a66kKaUQ5dZAEv4HvvtDId2_DpSuYDB088BZxGuMji7G4OFUnPog6p';
-$client->getRequest()->setBasicAuth($user, $pass);
-$client->getRequest()->setQuery(['grant_type' => 'client_credentials']);
-$response = $client->execute();
-
-$response->getStatusCode(); // 200
-$response->toJson();      // JSON
-```
+Http layer contracts for PHP clients. This contracts standardize the way you consume http clients like Guzzle, Symfony, and others.
+No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
+For all client layers see [Easy Http](https://github.com/easy-http).
