@@ -7,7 +7,7 @@
 <a href="https://scrutinizer-ci.com/g/easy-http/layer-contracts/?branch=master"><img src="https://scrutinizer-ci.com/g/easy-http/layer-contracts/badges/coverage.png?b=master" alt="Code Coverage"></a>
 </p>
 
-<p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-contracts.png" height="300"></p>
+<p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-contracts.png" width="500"></p>
 
 # Layer Contracts
 
