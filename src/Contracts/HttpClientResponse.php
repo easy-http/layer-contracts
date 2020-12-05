@@ -2,16 +2,17 @@
 
 namespace EasyHttp\LayerContracts\Contracts;
 
-use EasyHttp\LayerContracts\Exceptions\ResponseNotParsedException;
+use EasyHttp\LayerContracts\Exceptions\ImpossibleToParseJsonException;
 
 interface HttpClientResponse
 {
     public function getStatusCode(): int;
     public function getHeaders(): array;
+    public function getBody(): string;
 
     /**
      * @return array
-     * @throws ResponseNotParsedException
+     * @throws ImpossibleToParseJsonException
      */
-    public function toJson(): array;
+    public function parseJson(): array;
 }

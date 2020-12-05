@@ -2,6 +2,9 @@
 
 namespace EasyHttp\LayerContracts\Tests\Unit;
 
+use EasyHttp\LayerContracts\Contracts\HttpClientResponse;
+use EasyHttp\LayerContracts\Exceptions\HttpClientException;
+use EasyHttp\LayerContracts\Exceptions\ImpossibleToParseJsonException;
 use EasyHttp\LayerContracts\Tests\Unit\Example\SomeClient;
 use PHPUnit\Framework\TestCase;
 
@@ -10,15 +13,28 @@ class AbstractClientTest extends TestCase
     /**
      * @test
      */
-    public function itExecutesARequest()
+    public function itExecutesARequest(): HttpClientResponse
     {
         $client = new SomeClient();
 
         $response = $client->call('GET', 'http://example.com/api');
 
         $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame(['key' => 'value'], $response->toJson());
+        $this->assertSame('{"key":"value"}', $response->getBody());
         $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $response->getHeaders());
+
+        return $response;
+    }
+
+    /**
+     * @test
+     * @depends itExecutesARequest
+     * @param HttpClientResponse $response
+     * @throws ImpossibleToParseJsonException
+     */
+    public function itCanParseAResponseToJson(HttpClientResponse $response)
+    {
+        $this->assertSame(['key' => 'value'], $response->parseJson());
     }
 
     /**
@@ -44,7 +60,7 @@ class AbstractClientTest extends TestCase
         $response = $client->execute();
 
         $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame(['key' => 'value'], $response->toJson());
+        $this->assertSame(['key' => 'value'], $response->parseJson());
         $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $response->getHeaders());
     }
 
@@ -82,7 +98,7 @@ class AbstractClientTest extends TestCase
         $response = $client->call('GET', 'some uri');
 
         $this->assertSame(500, $response->getStatusCode());
-        $this->assertSame(['message' => 'Server Error'], $response->toJson());
+        $this->assertSame(['message' => 'Server Error'], $response->parseJson());
         $this->assertSame(['Server' => 'Apache/2.4.38 (Ubuntu)'], $response->getHeaders());
     }
 
@@ -108,9 +124,46 @@ class AbstractClientTest extends TestCase
         $mockedResponse = $client->call('GET', 'some uri');
 
         $this->assertSame(200, $liveResponse->getStatusCode());
-        $this->assertSame(['key' => 'value'], $liveResponse->toJson());
+        $this->assertSame(['key' => 'value'], $liveResponse->parseJson());
         $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $liveResponse->getHeaders());
         $this->assertSame(500, $mockedResponse->getStatusCode());
         $this->assertSame(['Server' => 'Apache/2.4 (Ubuntu)'], $mockedResponse->getHeaders());
+    }
+
+    /**
+     * This test is just a mock!. The responsibility for throwing this exception lies
+     * with the library who is implementing this contracts!
+     *
+     * @test
+     */
+    public function itThrowsClientExceptionWhenFails()
+    {
+        $this->expectException(HttpClientException::class);
+
+        $client = new SomeClient();
+
+        $client->withHandler(
+            function () {
+                throw new HttpClientException('Bad request exception');
+            }
+        );
+
+        $client->call('GET', 'some uri');
+    }
+
+    public function itThrowsNotParsedExceptionWhenInvalidJsonIsFound()
+    {
+        $this->expectException(ImpossibleToParseJsonException::class);
+
+        $client = new SomeClient();
+
+        $client->withHandler(
+            function () {
+                return 'Server Error';
+            }
+        );
+
+        $response = $client->call('GET', 'some uri');
+        $response->parseJson();
     }
 }
