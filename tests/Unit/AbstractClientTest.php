@@ -10,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 class AbstractClientTest extends TestCase
 {
+    protected string $uri = 'http://example.com/api';
+
     /**
      * @test
      */
@@ -17,11 +19,14 @@ class AbstractClientTest extends TestCase
     {
         $client = new SomeClient();
 
-        $response = $client->call('GET', 'http://example.com/api');
+        $response = $client->call('GET', $this->uri);
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame('{"key":"value"}', $response->getBody());
-        $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $response->getHeaders());
+        $this->assertSame(
+            ['Server' => 'Apache/2.4.38 (Debian)', 'X-Info' => 'GET ' . $this->uri],
+            $response->getHeaders()
+        );
 
         return $response;
     }
@@ -43,7 +48,7 @@ class AbstractClientTest extends TestCase
     public function itPreparesARequestForExecution()
     {
         $client = new SomeClient();
-        $client->prepareRequest('GET', 'http://example.com/api');
+        $client->prepareRequest('GET', $this->uri);
 
         $this->assertSame('GET', $client->getRequest()->getMethod());
         $this->assertSame('http://example.com/api', $client->getRequest()->getUri());
@@ -55,13 +60,16 @@ class AbstractClientTest extends TestCase
     public function itExecutesAPreparedRequest()
     {
         $client = new SomeClient();
-        $client->prepareRequest('GET', 'http://example.com/api');
+        $client->prepareRequest('GET', $this->uri);
 
         $response = $client->execute();
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame(['key' => 'value'], $response->parseJson());
-        $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $response->getHeaders());
+        $this->assertSame(
+            ['Server' => 'Apache/2.4.38 (Debian)', 'X-Info' => 'GET ' . $this->uri],
+            $response->getHeaders()
+        );
     }
 
     /**
@@ -71,9 +79,9 @@ class AbstractClientTest extends TestCase
     {
         $client = new SomeClient();
 
-        $client->call('GET', 'http://example.com/api');
-        $client->call('GET', 'http://example.com/api');
-        $client->call('GET', 'http://example.com/api');
+        $client->call('GET', $this->uri);
+        $client->call('GET', $this->uri);
+        $client->call('GET', $this->uri);
 
         $this->assertSame(1, $client->getAdapterCounter());
     }
@@ -95,7 +103,7 @@ class AbstractClientTest extends TestCase
             }
         );
 
-        $response = $client->call('GET', 'some uri');
+        $response = $client->call('GET', $this->uri);
 
         $this->assertSame(500, $response->getStatusCode());
         $this->assertSame(['message' => 'Server Error'], $response->parseJson());
@@ -109,23 +117,26 @@ class AbstractClientTest extends TestCase
     {
         $client = new SomeClient();
 
-        $liveResponse = $client->call('GET', 'http://example.com/api');
+        $liveResponse = $client->call('GET', $this->uri);
 
         $client->withHandler(
             function () {
                 return [
                     'status' => 500,
                     'headers' => ['Server' => 'Apache/2.4 (Ubuntu)'],
-                    'body' => 'Server Error',
+                    'body' => 'Server Error - Try later again',
                 ];
             }
         );
 
-        $mockedResponse = $client->call('GET', 'some uri');
+        $mockedResponse = $client->call('GET', $this->uri);
 
         $this->assertSame(200, $liveResponse->getStatusCode());
         $this->assertSame(['key' => 'value'], $liveResponse->parseJson());
-        $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $liveResponse->getHeaders());
+        $this->assertSame(
+            ['Server' => 'Apache/2.4.38 (Debian)', 'X-Info' => 'GET ' . $this->uri],
+            $liveResponse->getHeaders()
+        );
         $this->assertSame(500, $mockedResponse->getStatusCode());
         $this->assertSame(['Server' => 'Apache/2.4 (Ubuntu)'], $mockedResponse->getHeaders());
     }
@@ -148,7 +159,7 @@ class AbstractClientTest extends TestCase
             }
         );
 
-        $client->call('GET', 'some uri');
+        $client->call('GET', $this->uri);
     }
 
     public function itThrowsNotParsedExceptionWhenInvalidJsonIsFound()
@@ -159,11 +170,11 @@ class AbstractClientTest extends TestCase
 
         $client->withHandler(
             function () {
-                return 'Server Error';
+                return 'HTTP 500 - Server Error';
             }
         );
 
-        $response = $client->call('GET', 'some uri');
+        $response = $client->call('GET', $this->uri);
         $response->parseJson();
     }
 }
