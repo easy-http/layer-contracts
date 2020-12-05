@@ -118,7 +118,7 @@ class AbstractClientTest extends TestCase
                 return [
                     'status' => 500,
                     'headers' => ['Server' => 'Apache/2.4 (Ubuntu)'],
-                    'body' => 'Server Error',
+                    'body' => 'Server Error - Try later again',
                 ];
             }
         );
@@ -161,7 +161,7 @@ class AbstractClientTest extends TestCase
 
         $client->withHandler(
             function () {
-                return 'Server Error';
+                return 'HTTP 500 - Server Error';
             }
         );
 
