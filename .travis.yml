@@ -8,7 +8,9 @@ cache:
     - vendor
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - composer install --no-interaction
 
 script:
   - composer phpcs-auto-check-project
+  - composer phpunit
