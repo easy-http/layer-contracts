@@ -97,7 +97,7 @@ class AbstractClientTest extends TestCase
             }
         );
 
-        $response = $client->call('GET', 'some uri');
+        $response = $client->call('GET', $this->uri);
 
         $this->assertSame(500, $response->getStatusCode());
         $this->assertSame(['message' => 'Server Error'], $response->parseJson());
@@ -123,7 +123,7 @@ class AbstractClientTest extends TestCase
             }
         );
 
-        $mockedResponse = $client->call('GET', 'some uri');
+        $mockedResponse = $client->call('GET', $this->uri);
 
         $this->assertSame(200, $liveResponse->getStatusCode());
         $this->assertSame(['key' => 'value'], $liveResponse->parseJson());
@@ -150,7 +150,7 @@ class AbstractClientTest extends TestCase
             }
         );
 
-        $client->call('GET', 'some uri');
+        $client->call('GET', $this->uri);
     }
 
     public function itThrowsNotParsedExceptionWhenInvalidJsonIsFound()
@@ -165,7 +165,7 @@ class AbstractClientTest extends TestCase
             }
         );
 
-        $response = $client->call('GET', 'some uri');
+        $response = $client->call('GET', $this->uri);
         $response->parseJson();
     }
 }
