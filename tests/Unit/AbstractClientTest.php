@@ -23,7 +23,10 @@ class AbstractClientTest extends TestCase
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame('{"key":"value"}', $response->getBody());
-        $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $response->getHeaders());
+        $this->assertSame(
+            ['Server' => 'Apache/2.4.38 (Debian)', 'X-Info' => 'GET ' . $this->uri],
+            $response->getHeaders()
+        );
 
         return $response;
     }
@@ -63,7 +66,10 @@ class AbstractClientTest extends TestCase
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame(['key' => 'value'], $response->parseJson());
-        $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $response->getHeaders());
+        $this->assertSame(
+            ['Server' => 'Apache/2.4.38 (Debian)', 'X-Info' => 'GET ' . $this->uri],
+            $response->getHeaders()
+        );
     }
 
     /**
@@ -127,7 +133,10 @@ class AbstractClientTest extends TestCase
 
         $this->assertSame(200, $liveResponse->getStatusCode());
         $this->assertSame(['key' => 'value'], $liveResponse->parseJson());
-        $this->assertSame(['Server' => 'Apache/2.4.38 (Debian)'], $liveResponse->getHeaders());
+        $this->assertSame(
+            ['Server' => 'Apache/2.4.38 (Debian)', 'X-Info' => 'GET ' . $this->uri],
+            $liveResponse->getHeaders()
+        );
         $this->assertSame(500, $mockedResponse->getStatusCode());
         $this->assertSame(['Server' => 'Apache/2.4 (Ubuntu)'], $mockedResponse->getHeaders());
     }

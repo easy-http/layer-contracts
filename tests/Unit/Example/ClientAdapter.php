@@ -29,7 +29,10 @@ class ClientAdapter implements HttpClientAdapter
 
         return [
             'status' => 200,
-            'headers' => ['Server' => 'Apache/2.4.38 (Debian)'],
+            'headers' => [
+                'Server' => 'Apache/2.4.38 (Debian)',
+                'X-Info' => $method . ' ' . $uri
+            ],
             'body' => '{"key":"value"}',
         ];
     }
