@@ -27,7 +27,12 @@ class ClientResponse implements HttpClientResponse
         return $this->headers;
     }
 
-    public function toJson(): array
+    public function getBody(): string
+    {
+        return $this->body;
+    }
+
+    public function parseJson(): array
     {
         return (array) json_decode($this->body) ?? [];
     }
