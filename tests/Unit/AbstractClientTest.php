@@ -10,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 class AbstractClientTest extends TestCase
 {
+    protected string $uri = 'http://example.com/api';
+
     /**
      * @test
      */
@@ -17,7 +19,7 @@ class AbstractClientTest extends TestCase
     {
         $client = new SomeClient();
 
-        $response = $client->call('GET', 'http://example.com/api');
+        $response = $client->call('GET', $this->uri);
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame('{"key":"value"}', $response->getBody());
@@ -43,7 +45,7 @@ class AbstractClientTest extends TestCase
     public function itPreparesARequestForExecution()
     {
         $client = new SomeClient();
-        $client->prepareRequest('GET', 'http://example.com/api');
+        $client->prepareRequest('GET', $this->uri);
 
         $this->assertSame('GET', $client->getRequest()->getMethod());
         $this->assertSame('http://example.com/api', $client->getRequest()->getUri());
@@ -55,7 +57,7 @@ class AbstractClientTest extends TestCase
     public function itExecutesAPreparedRequest()
     {
         $client = new SomeClient();
-        $client->prepareRequest('GET', 'http://example.com/api');
+        $client->prepareRequest('GET', $this->uri);
 
         $response = $client->execute();
 
@@ -71,9 +73,9 @@ class AbstractClientTest extends TestCase
     {
         $client = new SomeClient();
 
-        $client->call('GET', 'http://example.com/api');
-        $client->call('GET', 'http://example.com/api');
-        $client->call('GET', 'http://example.com/api');
+        $client->call('GET', $this->uri);
+        $client->call('GET', $this->uri);
+        $client->call('GET', $this->uri);
 
         $this->assertSame(1, $client->getAdapterCounter());
     }
@@ -109,7 +111,7 @@ class AbstractClientTest extends TestCase
     {
         $client = new SomeClient();
 
-        $liveResponse = $client->call('GET', 'http://example.com/api');
+        $liveResponse = $client->call('GET', $this->uri);
 
         $client->withHandler(
             function () {
