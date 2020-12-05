@@ -8,14 +8,12 @@
 
 <p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-contracts.png" width="500"></p>
 
-<p align="center">
-<a href="https://sonarcloud.io/dashboard?id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=security_rating" alt="Bugs"></a>
-<a href="https://sonarcloud.io/dashboard?id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=bugs" alt="Bugs"></a>
-<a href="https://sonarcloud.io/dashboard?id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=code_smells" alt="Bugs"></a>
-</p>
-
 # Layer Contracts
 
 Http layer contracts for PHP clients. This contracts standardize the way you consume http clients like Guzzle, Symfony, and others.
 No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
 For all client layers see [Easy Http](https://github.com/easy-http).
+
+<a href="https://sonarcloud.io/dashboard?id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=security_rating" alt="Bugs"></a>
+<a href="https://sonarcloud.io/dashboard?id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=bugs" alt="Bugs"></a>
+<a href="https://sonarcloud.io/dashboard?id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=code_smells" alt="Bugs"></a>
