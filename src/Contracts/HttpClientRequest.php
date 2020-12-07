@@ -15,5 +15,4 @@ interface HttpClientRequest
     public function setJson(array $json): self;
     public function setQuery(array $query): self;
     public function ssl(bool $ssl): void;
-    public function options();
 }
