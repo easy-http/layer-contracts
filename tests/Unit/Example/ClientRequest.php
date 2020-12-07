@@ -78,9 +78,4 @@ class ClientRequest implements HttpClientRequest
     {
         $this->ssl = $ssl;
     }
-
-    public function options()
-    {
-        return $this->options;
-    }
 }
