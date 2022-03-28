@@ -1,7 +1,9 @@
 composer.lock
+phpunit.coverage.xml
 .phpunit.result.cache
 .php_cs.cache
 .phpunit.cache
 .idea/
+.scannerwork/
 vendor/
 tests/coverage/
