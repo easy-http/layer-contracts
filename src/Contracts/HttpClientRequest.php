@@ -9,6 +9,7 @@ interface HttpClientRequest
     public function getJson(): array;
     public function getQuery(): array;
     public function getHeader(string $key);
+    public function getHeaders(): array;
     public function setMethod(string $method): self;
     public function setUri(string $uri): self;
     public function setHeader(string $key, string $value): self;

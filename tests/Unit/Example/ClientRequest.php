@@ -39,6 +39,11 @@ class ClientRequest implements HttpClientRequest
         return $this->headers[$key] ?? '';
     }
 
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
     public function setMethod(string $method): HttpClientRequest
     {
         $this->method = $method;
