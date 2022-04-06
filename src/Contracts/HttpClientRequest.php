@@ -9,6 +9,15 @@ interface HttpClientRequest
     public function getJson(): array;
     public function getQuery(): array;
     public function getHeader(string $key);
+
+    /**
+     * Returns an array with key -> value pairs of headers
+     * Ex: ['Content-Type' => 'application/json;charset=UTF-8', 'Accept' => 'application/json']
+     *
+     * @return array
+     */
+    public function getHeaders(): array;
+
     public function setMethod(string $method): self;
     public function setUri(string $uri): self;
     public function setHeader(string $key, string $value): self;
