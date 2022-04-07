@@ -17,10 +17,7 @@ class SomeClient extends AbstractClient
 
     protected function buildRequest(string $method, string $uri): HttpClientRequest
     {
-        $request = new ClientRequest();
-        $request->setMethod($method)->setUri($uri);
-
-        return $request;
+        return new ClientRequest($method, $uri);
     }
 
     protected function buildAdapter(): HttpClientAdapter
