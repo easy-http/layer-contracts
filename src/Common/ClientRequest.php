@@ -88,6 +88,11 @@ class ClientRequest implements HttpClientRequest
         return !is_null($this->getSecurityContext());
     }
 
+    public function hasBasicAuth(): bool
+    {
+        return !empty($this->basicAuth);
+    }
+
     public function setMethod(string $method): self
     {
         $this->method = $method;

@@ -36,6 +36,7 @@ interface HttpClientRequest
     public function hasQuery(): bool;
     public function hasHeaders(): bool;
     public function hasSecurityContext(): bool;
+    public function hasBasicAuth(): bool;
 
     public function setMethod(string $method): self;
     public function setUri(string $uri): self;
