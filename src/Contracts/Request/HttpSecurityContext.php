@@ -2,7 +2,7 @@
 
 namespace EasyHttp\LayerContracts\Contracts\Request;
 
-interface HttpRequestSecurity
+interface HttpSecurityContext
 {
     public function getCertificate(): string;
     public function getPrivateKey(): string;

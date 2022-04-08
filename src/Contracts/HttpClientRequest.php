@@ -2,7 +2,7 @@
 
 namespace EasyHttp\LayerContracts\Contracts;
 
-use EasyHttp\LayerContracts\Contracts\Request\HttpRequestSecurity;
+use EasyHttp\LayerContracts\Contracts\Request\HttpSecurityContext;
 
 interface HttpClientRequest
 {
@@ -29,7 +29,7 @@ interface HttpClientRequest
     public function getQuery(): array;
 
     public function getTimeout(): int;
-    public function getSecurityContext(): ?HttpRequestSecurity;
+    public function getSecurityContext(): ?HttpSecurityContext;
     public function getBasicAuth(): array;
 
     public function hasJson(): bool;
@@ -46,7 +46,7 @@ interface HttpClientRequest
     public function setQuery(array $query): self;
 
     public function setTimeout(int $timeout): self;
-    public function setSecurityContext(HttpRequestSecurity $securityContext): self;
+    public function setSecurityContext(HttpSecurityContext $securityContext): self;
     public function setBasicAuth(string $username, string $password): self;
 
     /**

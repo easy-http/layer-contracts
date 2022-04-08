@@ -2,9 +2,9 @@
 
 namespace EasyHttp\LayerContracts\Common;
 
-use EasyHttp\LayerContracts\Contracts\Request\HttpRequestSecurity;
+use EasyHttp\LayerContracts\Contracts\Request\HttpSecurityContext;
 
-class ClientRequestSecurity implements HttpRequestSecurity
+class SecurityContext implements HttpSecurityContext
 {
     protected string $certificate;
     protected string $privateKey;

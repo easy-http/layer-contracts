@@ -2,7 +2,7 @@
 
 namespace EasyHttp\LayerContracts\Tests\Unit\Common;
 
-use EasyHttp\LayerContracts\Common\ClientRequestSecurity;
+use EasyHttp\LayerContracts\Common\SecurityContext;
 use EasyHttp\LayerContracts\Tests\TestCase;
 use EasyHttp\LayerContracts\Tests\Unit\Example\ClientRequest;
 
@@ -45,7 +45,7 @@ class ClientRequestTest extends TestCase
         $request->setHeaders(['a' => 'b']);
         $request->setHeader('auth', 'xdsG56');
         $request->setBasicAuth('user', 'pass');
-        $security = new ClientRequestSecurity();
+        $security = new SecurityContext();
         $request->setSecurityContext($security);
         $request->ssl(true);
 

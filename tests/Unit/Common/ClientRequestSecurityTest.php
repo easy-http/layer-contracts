@@ -2,7 +2,7 @@
 
 namespace EasyHttp\LayerContracts\Tests\Unit\Common;
 
-use EasyHttp\LayerContracts\Common\ClientRequestSecurity;
+use EasyHttp\LayerContracts\Common\SecurityContext;
 use EasyHttp\LayerContracts\Tests\TestCase;
 
 class ClientRequestSecurityTest extends TestCase
@@ -12,7 +12,7 @@ class ClientRequestSecurityTest extends TestCase
      */
     public function itSetsInitialProperties()
     {
-        $security = new ClientRequestSecurity();
+        $security = new SecurityContext();
 
         $this->assertFalse($security->hasCertificate());
         $this->assertFalse($security->hasPrivateKey());
@@ -23,7 +23,7 @@ class ClientRequestSecurityTest extends TestCase
      */
     public function itCanChangeItsData()
     {
-        $security = new ClientRequestSecurity();
+        $security = new SecurityContext();
 
         $security->setCertificate('cert/cert.pem');
         $security->setPrivateKey('cert/private.pem');
