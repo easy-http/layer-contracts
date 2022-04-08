@@ -26,11 +26,11 @@ abstract class AbstractClient implements EasyClientContract
         return $this->getAdapter()->request($request);
     }
 
-    public function prepareRequest(string $method, string $uri): self
+    public function prepareRequest(string $method, string $uri): HttpClientRequest
     {
         $this->request = $this->buildRequest($method, $uri);
 
-        return $this;
+        return $this->request;
     }
 
     public function withHandler(callable $handler): self
