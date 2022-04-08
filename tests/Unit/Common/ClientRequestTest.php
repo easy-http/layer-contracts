@@ -47,6 +47,7 @@ class ClientRequestTest extends TestCase
         $request->setBasicAuth('user', 'pass');
         $security = new ClientRequestSecurity();
         $request->setSecurityContext($security);
+        $request->ssl(true);
 
         $this->assertSame($method, $request->getMethod());
         $this->assertSame($url, $request->getUri());
@@ -61,5 +62,6 @@ class ClientRequestTest extends TestCase
         $this->assertSame(['user', 'pass'], $request->getBasicAuth());
         $this->assertTrue($request->hasBasicAuth());
         $this->assertTrue($request->hasSecurityContext());
+        $this->assertTrue($request->isSSL());
     }
 }
