@@ -109,6 +109,15 @@ class ClientRequest implements HttpClientRequest
         return $this;
     }
 
+    public function setHeaders(array $headers): self
+    {
+        foreach ($headers as $key => $value) {
+            $this->setHeader($key, $value);
+        }
+
+        return $this;
+    }
+
     public function setJson(array $json): self
     {
         $this->json = $json;

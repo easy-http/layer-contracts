@@ -38,6 +38,7 @@ class ClientRequestTest extends TestCase
         $request->setJson(['foo' => 'bar']);
         $request->setQuery(['bar' => 'baz']);
         $request->setTimeout(20);
+        $request->setHeaders(['a' => 'b']);
         $request->setHeader('auth', 'xdsG56');
         $request->setBasicAuth('user', 'pass');
 
@@ -46,8 +47,8 @@ class ClientRequestTest extends TestCase
         $this->assertSame(['foo' => 'bar'], $request->getJson());
         $this->assertSame(['bar' => 'baz'], $request->getQuery());
         $this->assertSame(20, $request->getTimeout());
-        $this->assertSame(['auth' => 'xdsG56'], $request->getHeaders());
         $this->assertSame('xdsG56', $request->getHeader('auth'));
+        $this->assertSame(['a' => 'b', 'auth' => 'xdsG56'], $request->getHeaders());
         $this->assertSame(['user', 'pass'], $request->getBasicAuth());
     }
 }
