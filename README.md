@@ -31,6 +31,6 @@
 Http layer contracts for PHP clients. These contracts standardize the way you consume http clients like Guzzle, Symfony, and others
 with a consistent interface. No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
 
-:pill: Check out all client layer implementations at [Easy Http](https://github.com/easy-http). This project contains several implementations for PHP Clients.
+:computer: Check out all client layer implementations at [Easy Http](https://github.com/easy-http). This project contains several implementations for PHP Clients.
 
 :books: Check out the [WIKI](https://github.com/easy-http/layer-contracts/wiki) to learn how to use any layer that implements these contracts.
