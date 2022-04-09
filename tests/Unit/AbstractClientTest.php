@@ -4,6 +4,7 @@ namespace EasyHttp\LayerContracts\Tests\Unit;
 
 use EasyHttp\LayerContracts\Contracts\HttpClientResponse;
 use EasyHttp\LayerContracts\Exceptions\HttpClientException;
+use EasyHttp\LayerContracts\Exceptions\HttpConnectionException;
 use EasyHttp\LayerContracts\Exceptions\ImpossibleToParseJsonException;
 use EasyHttp\LayerContracts\Tests\Unit\Example\SomeClient;
 use PHPUnit\Framework\TestCase;
@@ -156,6 +157,27 @@ class AbstractClientTest extends TestCase
         $client->withHandler(
             function () {
                 throw new HttpClientException('Bad request exception');
+            }
+        );
+
+        $client->call('GET', $this->uri);
+    }
+
+    /**
+     * This test is just a mock!. The responsibility for throwing this exception lies
+     * with the library who is implementing this contracts!
+     *
+     * @test
+     */
+    public function itThrowsClientExceptionWhenConnectionFails()
+    {
+        $this->expectException(HttpConnectionException::class);
+
+        $client = new SomeClient();
+
+        $client->withHandler(
+            function () {
+                throw new HttpConnectionException('Service is down');
             }
         );
 
