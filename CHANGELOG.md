@@ -4,11 +4,13 @@
 
 ### Add
 - Add common implementations (ClientRequest, SecurityContext) ([#34](https://github.com/easy-http/layer-contracts/pull/34))
+- Add connection exception ([#37](https://github.com/easy-http/layer-contracts/pull/37))
 
 ### Changed
 - HttpClientRequest contract now has getHeaders() ([#33](https://github.com/easy-http/layer-contracts/pull/33))
 - Add has methods (hasJson, hasHeaders, ...) ([#34](https://github.com/easy-http/layer-contracts/pull/34))
 - Support certificate/private key with security context ([#34](https://github.com/easy-http/layer-contracts/pull/34))
+- Remove logic from HttpClientException ([#35](https://github.com/easy-http/layer-contracts/pull/35))
 
 # Release Notes for 0.x
 
