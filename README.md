@@ -13,10 +13,14 @@
 </p>
 
 <p align="center">
-    :rocket: Change easily from one client to another using http layer contracts
+    :bookmark: Consistent interface for http clients
 </p>
 
 <p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-contracts.png" width="500"></p>
+
+<p align="center">
+    :rocket: Change easily from one client to another using http layer contracts
+</p>
 
 # Layer Contracts
 
