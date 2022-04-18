@@ -3,7 +3,7 @@
 ## [v2.0.0 (2022-04-13)](https://github.com/easy-http/layer-contracts/compare/v1.0.0...v2.0.0)
 
 ### Changed
-- Change method name (prepareRequest to request) ([38](https://github.com/easy-http/layer-contracts/pull/38))
+- Change method name (prepareRequest to request) ([#38](https://github.com/easy-http/layer-contracts/pull/38))
 
 ## [v1.0.0 (2022-04-08)](https://github.com/easy-http/layer-contracts/compare/v0.2.0...v1.0.0)
 
