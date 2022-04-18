@@ -30,6 +30,14 @@ interface HttpClientRequest
 
     public function getTimeout(): int;
     public function getSecurityContext(): ?HttpSecurityContext;
+
+    /**
+     * Returns an array with basic auth credentials.
+     * The first value will be the username and the second one will be the password.
+     * Ex: ['username', 'password']
+     *
+     * @return array
+     */
     public function getBasicAuth(): array;
 
     public function hasJson(): bool;
