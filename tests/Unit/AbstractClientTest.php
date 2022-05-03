@@ -49,7 +49,7 @@ class AbstractClientTest extends TestCase
     public function itPreparesARequestForExecution()
     {
         $client = new SomeClient();
-        $client->request('GET', $this->uri);
+        $client->prepareRequest('GET', $this->uri);
 
         $this->assertSame('GET', $client->getRequest()->getMethod());
         $this->assertSame('http://example.com/api', $client->getRequest()->getUri());
@@ -61,7 +61,7 @@ class AbstractClientTest extends TestCase
     public function itExecutesAPreparedRequest()
     {
         $client = new SomeClient();
-        $client->request('GET', $this->uri);
+        $client->prepareRequest('GET', $this->uri);
 
         $response = $client->execute();
 

@@ -26,7 +26,7 @@ abstract class AbstractClient implements EasyClientContract
         return $this->getAdapter()->request($request);
     }
 
-    public function request(string $method, string $uri): HttpClientRequest
+    public function prepareRequest(string $method, string $uri): HttpClientRequest
     {
         $this->request = $this->buildRequest($method, $uri);
 
