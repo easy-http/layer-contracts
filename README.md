@@ -28,9 +28,7 @@
 <a href="https://sonarcloud.io/dashboard?id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=bugs" alt="Bugs"></a>
 <a href="https://sonarcloud.io/dashboard?id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=code_smells" alt="Bugs"></a>
 
-Http layer contracts for PHP clients. These contracts standardize the way you consume http clients like Guzzle, Symfony, and others
+HTTP layer contracts for PHP clients. These contracts standardize the way you consume HTTP clients like Guzzle, Symfony, and others
 with a consistent interface. No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
 
-:computer: Check out all client layer implementations at [Easy Http](https://github.com/easy-http). This project contains several implementations for PHP Clients.
-
-:books: Check out the [WIKI](https://github.com/easy-http/layer-contracts/wiki) to learn how to use any layer that implements these contracts.
+:books: Check out the [Documentation](https://easy-http.com/docs) to learn how to use any layer that implements these contracts.
