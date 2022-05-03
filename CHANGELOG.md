@@ -1,6 +1,6 @@
 # Release Notes for 1.x
 
-## [v1.0.0 (2022-04-08)](https://github.com/easy-http/layer-contracts/compare/v0.2.0...v1.0.0)
+## [v1.0.0 (2022-05-03)](https://github.com/easy-http/layer-contracts/compare/v0.2.0...v1.0.0)
 
 ### Add
 - Add common implementations (ClientRequest, SecurityContext) ([#34](https://github.com/easy-http/layer-contracts/pull/34))
