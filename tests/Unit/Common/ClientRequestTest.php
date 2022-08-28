@@ -21,6 +21,7 @@ class ClientRequestTest extends TestCase
         $this->assertSame($method, $request->getMethod());
         $this->assertSame($url, $request->getUri());
         $this->assertFalse($request->hasHeaders());
+        $this->assertEmpty($request->getBody());
         $this->assertFalse($request->hasJson());
         $this->assertFalse($request->hasQuery());
         $this->assertFalse($request->hasSecurityContext());
@@ -63,5 +64,18 @@ class ClientRequestTest extends TestCase
         $this->assertTrue($request->hasBasicAuth());
         $this->assertTrue($request->hasSecurityContext());
         $this->assertTrue($request->isSSL());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanSetTheBodyAsJson()
+    {
+        $request = new ClientRequest('POST', $this->faker->url);
+
+        $request->setJson(['foo' => 'bar']);
+
+        $this->assertSame(['foo' => 'bar'], $request->getJson());
+        $this->assertSame('{"foo":"bar"}', $request->getBody());
     }
 }

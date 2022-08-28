@@ -11,17 +11,25 @@ interface HttpClientRequest
     public function getHeader(string $key);
 
     /**
-     * Returns an array with key -> value pairs of headers
+     * Returns an array of key -> value pairs of headers
      * Ex: ['Content-Type' => 'application/json;charset=UTF-8', 'Accept' => 'application/json']
      *
      * @return array
      */
     public function getHeaders(): array;
 
+    public function getBody(): string;
+
+    /**
+     * Returns the value encoded in JSON as an array of key -> value pairs
+     * Ex: ['foo' => 'bar', 'flag' => 'enabled']
+     * 
+     * @return array
+     */
     public function getJson(): array;
 
     /**
-     * Returns an array with key -> value pairs of query parameters
+     * Returns an array of key -> value pairs of query parameters
      * Ex: ['foo' => 'bar', 'flag' => 'enabled']
      *
      * @return array
