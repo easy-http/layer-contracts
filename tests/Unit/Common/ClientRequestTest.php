@@ -78,4 +78,16 @@ class ClientRequestTest extends TestCase
         $this->assertSame(['foo' => 'bar'], $request->getJson());
         $this->assertSame('{"foo":"bar"}', $request->getBody());
     }
+
+    /**
+     * @test
+     */
+    public function itCannotParseWrontJsonValues()
+    {
+        $request = new ClientRequest('POST', $this->faker->url);
+
+        $request->setJson(["\xc3" => "bar"]);
+
+        $this->assertSame('', $request->getBody());
+    }
 }
