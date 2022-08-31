@@ -10,6 +10,7 @@ class ClientRequest implements HttpClientRequest
     protected string $method;
     protected string $uri;
     protected array $headers = [];
+    protected string $body = '';
     protected array $json = [];
     protected array $query = [];
     protected ?HttpSecurityContext $securityContext = null;
@@ -43,6 +44,21 @@ class ClientRequest implements HttpClientRequest
         return $this->headers;
     }
 
+    public function getBody(): string
+    {
+        if (!$this->hasJson()) {
+            return $this->body;
+        }
+        
+        $body = json_encode($this->json);
+
+        if (!$body) {
+            return '';
+        }
+
+        return $body;
+    }
+
     public function getJson(): array
     {
         return $this->json;
@@ -66,6 +82,17 @@ class ClientRequest implements HttpClientRequest
     public function getBasicAuth(): array
     {
         return $this->basicAuth;
+    }
+
+    public function hasBody(): bool
+    {
+        if (!$this->hasJson()) {
+            return !empty($this->body);
+        }
+
+        $body = json_encode($this->json);
+
+        return (bool) !empty($body);
     }
 
     public function hasJson(): bool
@@ -119,6 +146,14 @@ class ClientRequest implements HttpClientRequest
         foreach ($headers as $key => $value) {
             $this->setHeader($key, $value);
         }
+
+        return $this;
+    }
+
+    public function setBody(string $body): self
+    {
+        $this->json = [];
+        $this->body = $body;
 
         return $this;
     }
