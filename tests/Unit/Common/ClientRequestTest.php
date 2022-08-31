@@ -90,4 +90,60 @@ class ClientRequestTest extends TestCase
 
         $this->assertSame('', $request->getBody());
     }
+
+    /**
+     * @test
+     */
+    public function itCanChangeTheBodyPreviouslyAsJson()
+    {
+        $request = new ClientRequest('POST', $this->faker->url);
+
+        $request->setJson(['foo' => 'bar']);
+        $request->setBody('Not Found');
+
+        $this->assertSame([], $request->getJson());
+        $this->assertSame('Not Found', $request->getBody());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanChangeTheBodyPreviouslyAsPlainText()
+    {
+        $request = new ClientRequest('POST', $this->faker->url);
+
+        $request->setBody('Not Found');
+        $request->setJson(['foo' => 'bar']);
+
+        $this->assertSame(['foo' => 'bar'], $request->getJson());
+        $this->assertSame('{"foo":"bar"}', $request->getBody());
+    }
+
+    /**
+     * @test
+     */
+    public function itHasBodyForJsonAssignment()
+    {
+        $request = new ClientRequest('POST', $this->faker->url);
+
+        $this->assertFalse($request->hasBody());
+
+        $request->setJson(['foo' => 'bar']);
+
+        $this->assertTrue($request->hasBody());
+    }
+
+    /**
+     * @test
+     */
+    public function itHasBodyWhenItIsAssigned()
+    {
+        $request = new ClientRequest('POST', $this->faker->url);
+
+        $this->assertFalse($request->hasBody());
+
+        $request->setBody('Not Found');
+
+        $this->assertTrue($request->hasBody());
+    }
 }
