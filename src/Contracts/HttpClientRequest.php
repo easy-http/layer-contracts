@@ -48,9 +48,10 @@ interface HttpClientRequest
      */
     public function getBasicAuth(): array;
 
+    public function hasHeaders(): bool;
+    public function hasBody(): bool;
     public function hasJson(): bool;
     public function hasQuery(): bool;
-    public function hasHeaders(): bool;
     public function hasSecurityContext(): bool;
     public function hasBasicAuth(): bool;
 
@@ -58,6 +59,7 @@ interface HttpClientRequest
     public function setUri(string $uri): self;
     public function setHeader(string $key, string $value): self;
     public function setHeaders(array $headers): self;
+    public function setBody(string $body): self;
     public function setJson(array $json): self;
     public function setQuery(array $query): self;
 
