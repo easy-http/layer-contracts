@@ -23,7 +23,7 @@ interface HttpClientRequest
     /**
      * Returns the value encoded in JSON as an array of key -> value pairs
      * Ex: ['foo' => 'bar', 'flag' => 'enabled']
-     * 
+     *
      * @return array
      */
     public function getJson(): array;
