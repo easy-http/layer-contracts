@@ -86,7 +86,7 @@ class ClientRequestTest extends TestCase
     {
         $request = new ClientRequest('POST', $this->faker->url);
 
-        $request->setJson(["\xc3" => "bar"]);
+        $request->setJson(["\xc3" => 'bar']);
 
         $this->assertSame('', $request->getBody());
     }
