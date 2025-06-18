@@ -1,10 +1,26 @@
+# ⚠️ ARCHIVED REPOSITORY ⚠️
+
+This repository has been archived and is no longer maintained. Please use the new repository:
+
+## [easy-http/contracts](https://github.com/easy-http/contracts)
+
+The package has been renamed from `layer-contracts` to `contracts` for improved clarity. The new package is available at:
+
+```bash
+composer require easy-http/contracts
+```
+
+All functionality remains the same in v2.0.0 of the new package, only the package name and namespace have changed:
+- Old namespace: `EasyHttp\LayerContracts`
+- New namespace: `EasyHttp\Contracts`
+
 <p align="center"><img src="https://blog.pleets.org/img/articles/easy-http-logo-320.png"></p>
 
 <p align="center">
-<a href="https://github.com/easy-http/layer-contracts/actions/workflows/tests.yml"><img src="https://github.com/easy-http/layer-contracts/actions/workflows/tests.yml/badge.svg?branch=1.x" alt="Build Status"></a>
-<a href="https://scrutinizer-ci.com/g/easy-http/layer-contracts"><img src="https://img.shields.io/scrutinizer/g/easy-http/layer-contracts.svg" alt="Code Quality"></a>
-<a href="https://scrutinizer-ci.com/g/easy-http/layer-contracts/?branch=master"><img src="https://scrutinizer-ci.com/g/easy-http/layer-contracts/badges/coverage.png?b=master" alt="Code Coverage"></a>
+<img src="https://img.shields.io/badge/status-archived-red" alt="Archived">
+<img src="https://img.shields.io/badge/package-deprecated-red" alt="Deprecated">
 </p>
+
 <p align="center">
     <a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-7.4%20to%208.2-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>
 </p>
@@ -19,11 +35,9 @@
     :rocket: Change easily from one client to another using http layer contracts
 </p>
 
-# Layer Contracts
+# Layer Contracts (Archived)
 
-<a href="https://sonarcloud.io/component_measures?metric=security_rating&branch=1.x&id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=security_rating&branch=1.x" alt="Bugs"></a>
-<a href="https://sonarcloud.io/component_measures?metric=bugs&branch=1.x&id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=bugs&branch=1.x" alt="Bugs"></a>
-<a href="https://sonarcloud.io/component_measures?metric=code_smells&branch=1.x&id=easy-http_layer-contracts"><img src="https://sonarcloud.io/api/project_badges/measure?project=easy-http_layer-contracts&metric=code_smells&branch=1.x" alt="Bugs"></a>
+> ⚠️ **DEPRECATED**: This package has been renamed to [easy-http/layer-contracts](https://github.com/easy-http/contracts). Please use the new package instead.
 
 HTTP layer contracts for PHP clients. These contracts standardize the way you consume HTTP clients like Guzzle, Symfony, and others
 with a consistent interface. No matter what client you are using, the methods you have to execute to do the job are the same for all!!.
